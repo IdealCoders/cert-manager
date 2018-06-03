@@ -1,0 +1,16 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: game-training-idealcoders-com
+  namespace: default
+spec:
+  secretName: game-training-idealcoders-com-tls
+  issuerRef:
+    name: letsencrypt
+  commonName: game.training.idealcoders.com
+  acme:
+    config:
+    - dns01:
+        provider: cf-dns
+      domains:
+      - game.training.idealcoders.com

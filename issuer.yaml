@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: letsencrypt
+  namespace: default
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: daniel@hawton.org
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    http01: {}
+    dns01:
+      providers:
+        - name: cf-dns
+          cloudflare:
+            email: daniel@hawton.org
+            apiKeySecretRef:
+              name: cloudflare-dns
+              key: api-key
